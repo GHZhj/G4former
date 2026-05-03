@@ -92,10 +92,12 @@ python train/G4former-DNase.py      # chromatin accessibility only
 python train/G4former-WGBS.py       # methylation only
 python train/G4former-Without_CSA.py
 ```
-You also can cross-cell-type evaluation
+You also can cross-cell-type evaluation and cancer-specific G4 discovery
 
 ```python
-python train/test_Other_cells.py
+python train/test_Other_cells.py    # new cell types
+python train/test_cancer.py         # 20 cancer types form the TCGA cohort
+
 ```
 
 

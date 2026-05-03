@@ -70,6 +70,7 @@ G4former/
 │   ├── G4former-seq.py
 │   ├── G4former-WGBS.py
 │   ├── G4former-Without_CSA.py
+│   ├── test_cancer.py
 │   └── test_Other_cells.py
 ├── utils/
 │   └── tokenizersM.py

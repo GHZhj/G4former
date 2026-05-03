@@ -320,9 +320,9 @@ class Block(nn.Module):
         x = x + self.mlp(self.ln2(x))
         return x, attn
 
-class IGQClassifier(nn.Module):
+class G4former(nn.Module):
     def __init__(self):
-        super(IGQClassifier, self).__init__()     
+        super(G4former, self).__init__()     
 
         self.adaptive_norm = AdaptiveLayerNorm(
             num_features=768, 
@@ -410,7 +410,7 @@ def main():
                         # 移除开头的"module."
             new_key = key[7:] if key.startswith('module.') else key
             new_state_dict[new_key] = value
-        model = IGQClassifier().to(device)
+        model = G4former().to(device)
 
         model.load_state_dict(new_state_dict)
         model = torch.nn.DataParallel(model, device_ids=device_ids)
