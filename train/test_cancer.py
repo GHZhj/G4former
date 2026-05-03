@@ -420,12 +420,14 @@ def main():
         for name in name_list:
             dataset = GenomicDataset(   
                 f"/home/hjzhang/{name}/dataZ.su.fa",
-                f"/home/hjzhang/{name}/dataZ.su_W2.tsv",
-                                        f"/home/hjzhang/{name}/dataF.su.fa",
-                                        f"/home/hjzhang/{name}/dataF.su_W2.tsv",
+                f"/home/hjzhang/{name}/dataZ.su_W.tsv", # WGBS
 
-                                        f"/home/hjzhang/{name}/dataZ.su_A2.tsv",
-                                        f"/home/hjzhang/{name}/dataF.su_A2.tsv", name
+                f"/home/hjzhang/{name}/dataF.su.fa",
+                f"/home/hjzhang/{name}/dataF.su_W.tsv", # WGBS
+                
+                f"/home/hjzhang/{name}/dataZ.su_A.tsv", # ATAC-seq (100-bp)
+                f"/home/hjzhang/{name}/dataF.su_A.tsv", # ATAC-seq (100-bp)
+                name
                 )
 
             test_loader = DataLoader(dataset, batch_size=batch_size, shuffle=False)
