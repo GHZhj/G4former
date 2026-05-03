@@ -67,15 +67,15 @@ After preprocessing, you will obtain tabular inputs required for model training.
 
 Before running the code:
 
-1. Update NT-v3 model paths in `AutoModel.from_pretrained(...)`  
-   - Nucleotide Transformer v3 (**NTv3 100M post**) for sequence features:  
-     https://huggingface.co/InstaDeepAI/NTv3_100M_post/tree/main  
-   - Base / tokenizer assets if needed:  
-     https://huggingface.co/InstaDeepAI/ntv3_base_model/tree/main  
+Update NT-v3 model paths in `AutoModel.from_pretrained(...)`  
+- Nucleotide Transformer v3 (**NTv3 100M post**) for sequence features:  
+   https://huggingface.co/InstaDeepAI/NTv3_100M_post/tree/main  
+- Base / tokenizer assets if needed:  
+   https://huggingface.co/InstaDeepAI/ntv3_base_model/tree/main  
 
-2. Run G4former on Our Data to Reproduce Results🏃
+### Run G4former on Our Data to Reproduce Results🏃
 
-### Full multimodal model training
+Full multimodal model training
 
 Run the main training script:
 
