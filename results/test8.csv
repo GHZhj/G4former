@@ -7,8 +7,6 @@ BRCA,UP,2
 BRCA,Down,0
 COAD,UP,3
 COAD,Down,2
-cancer,UP,0
-cancer,Down,0
 ESCA,UP,2
 ESCA,Down,0
 HNSC,UP,4
@@ -39,3 +37,5 @@ TGCT,UP,2
 TGCT,Down,1
 THCA,UP,2
 THCA,Down,2
+UCEC,UP,0
+UCEC,Down,0
