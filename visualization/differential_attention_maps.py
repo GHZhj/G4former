@@ -592,18 +592,6 @@ class G4former(nn.Module):
                 nn.init.xavier_uniform_(m.weight)
                 if m.bias is not None:
                     nn.init.zeros_(m.bias)
-            elif isinstance(m, nn.Conv1d):
-                nn.init.kaiming_uniform_(m.weight, a=math.sqrt(5))
-                if m.bias is not None:
-                    nn.init.zeros_(m.bias)
-            elif isinstance(m, nn.Embedding):
-                nn.init.normal_(m.weight, mean=0, std=m.embedding_dim ** -0.5)
-                # nn.init.uniform_(m.weight, -0.1, 0.1)            
-            elif isinstance(m, (nn.LayerNorm, nn.BatchNorm1d)):
-                if m.weight is not None:
-                    nn.init.ones_(m.weight)
-                if m.bias is not None:
-                    nn.init.zeros_(m.bias)
 
         # 递归应用到所有子模块
         self.fc2.apply(init_layer)
@@ -685,7 +673,7 @@ if True:
 
                     input_ids, w, y,idx = test_subset[n]
 
-                    input_ids, w1, y0 = input_ids.unsqueeze(0).to(device), x.to(device), w.unsqueeze(0).to(device), y.to(device)
+                    input_ids, w1, y0 = input_ids.unsqueeze(0).to(device), w.unsqueeze(0).to(device), y.to(device)
 
                     species_ids = torch.full((1,), species_token, dtype=torch.long).to(device)
 
@@ -697,7 +685,7 @@ if True:
                     out, attn1 = model(input_ids, species_ids, w1)
 
                     input_ids2, w, y,idx2 = test_subset2[n]
-                    input_ids2, w2, y2 = input_ids2.unsqueeze(0).to(device), x.to(device), w.unsqueeze(0).to(device), y.to(device)
+                    input_ids2, w2, y2 = input_ids2.unsqueeze(0).to(device), w.unsqueeze(0).to(device), y.to(device)
                     
                     if torch.equal(input_ids2, input_ids):
                         out2, attn2 = model(input_ids2, species_ids, w2)
@@ -708,7 +696,7 @@ if True:
                     else:
                         print("error")
                     input_ids3, w, y,idx3 = test_subset3[n]
-                    input_ids3, w3, y3 = input_ids3.unsqueeze(0).to(device), x.to(device), w.unsqueeze(0).to(device), y.to(device)
+                    input_ids3, w3, y3 = input_ids3.unsqueeze(0).to(device), w.unsqueeze(0).to(device), y.to(device)
                     if torch.equal(input_ids3, input_ids):
                         out2, attn3 = model(input_ids3, species_ids, w3)
                         w3_dnase0 = w3.clone()
@@ -718,7 +706,7 @@ if True:
                     else:
                         print("error")
                     input_ids4, w, y,idx4 = test_subset4[n]
-                    input_ids4, w4, y4 = input_ids4.unsqueeze(0).to(device), x.to(device), w.unsqueeze(0).to(device), y.to(device)
+                    input_ids4, w4, y4 = input_ids4.unsqueeze(0).to(device), w.unsqueeze(0).to(device), y.to(device)
                     if torch.equal(input_ids4, input_ids):
                         out2, attn4 = model(input_ids4, species_ids, w4)
                         w4_dnase0 = w4.clone()
