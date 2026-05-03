@@ -564,24 +564,24 @@ name = name_list[2] # "A549"
 def main():
     epochs = 1 
     patience = 2
-    if True:
+    if name:
         dataset = GenomicDataset(   
                 f"/home/hjzhang/dataset/home-1/ylxiong/_update/Intervene_results/{name}_1k/G4_1k.suF.fa",
-                f"/home/hjzhang/dataset/home-1/ylxiong/_update/Intervene_results/{name}_1k/G4_1k.suF_F.tsv",
+                f"/home/hjzhang/dataset/home-1/ylxiong/_update/Intervene_results/{name}_1k/G4_1k.suF_F.tsv",        # WGBS
                 
-                f"/home/hjzhang/dataset/home-1/ylxiong/_update/Intervene_results/{name}_1k/G4_1k.suZ.fa",
-                f"/home/hjzhang/dataset/home-1/ylxiong/_update/Intervene_results/{name}_1k/G4_1k.suZ_Z.tsv",
+                f"/home/hjzhang/dataset/home-1/ylxiong/_update/Intervene_results/{name}_1k/G4_1k.suZ.fa",  
+                f"/home/hjzhang/dataset/home-1/ylxiong/_update/Intervene_results/{name}_1k/G4_1k.suZ_Z.tsv",        # WGBS
                 
                 f"/home/hjzhang/dataset/home-1/ylxiong/_update/Intervene_results/{name}_1k/noG4_1k.suF.fa",
-                f"/home/hjzhang/dataset/home-1/ylxiong/_update/Intervene_results/{name}_1k/noG4_1k.suF_F.tsv",
+                f"/home/hjzhang/dataset/home-1/ylxiong/_update/Intervene_results/{name}_1k/noG4_1k.suF_F.tsv",      # WGBS
                 
                 f"/home/hjzhang/dataset/home-1/ylxiong/_update/Intervene_results/{name}_1k/noG4_1k.suZ.fa",
-                f"/home/hjzhang/dataset/home-1/ylxiong/_update/Intervene_results/{name}_1k/noG4_1k.suZ_Z.tsv",
+                f"/home/hjzhang/dataset/home-1/ylxiong/_update/Intervene_results/{name}_1k/noG4_1k.suZ_Z.tsv",      # WGBS
                 
-                f"/home/hjzhang/dataset/home-1/ylxiong/_update/Intervene_results/{name}_1k/G4_1k.suF_D.tsv",
-                f"/home/hjzhang/dataset/home-1/ylxiong/_update/Intervene_results/{name}_1k/G4_1k.suZ_D.tsv",
-                f"/home/hjzhang/dataset/home-1/ylxiong/_update/Intervene_results/{name}_1k/noG4_1k.suF_D.tsv",
-                f"/home/hjzhang/dataset/home-1/ylxiong/_update/Intervene_results/{name}_1k/noG4_1k.suZ_D.tsv", 
+                f"/home/hjzhang/dataset/home-1/ylxiong/_update/Intervene_results/{name}_1k/G4_1k.suF_D.tsv",         # DNase-seq or ATAC-seq
+                f"/home/hjzhang/dataset/home-1/ylxiong/_update/Intervene_results/{name}_1k/G4_1k.suZ_D.tsv",         # DNase-seq or ATAC-seq
+                f"/home/hjzhang/dataset/home-1/ylxiong/_update/Intervene_results/{name}_1k/noG4_1k.suF_D.tsv",       # DNase-seq or ATAC-seq
+                f"/home/hjzhang/dataset/home-1/ylxiong/_update/Intervene_results/{name}_1k/noG4_1k.suZ_D.tsv",       # DNase-seq or ATAC-seq
             )
 
         all_f1, all_auc ,all_auprc,  all_mcc = [], [],[],[]
@@ -655,7 +655,7 @@ def main():
         val_accs, val_losses = [] ,[]
         # ---------------------- 测试 ----------------------
         loop = tqdm(test_loader, desc=f"[Test]")
-        if True:
+        if loop:
             val_loss, val_correct, val_total = 0, 0, 0
             val_preds, val_targets, val_probs = [], [], []
             with torch.no_grad():

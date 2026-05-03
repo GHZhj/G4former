@@ -67,8 +67,11 @@ This fixed-window design ensures consistent sequence and epigenomic feature alig
 Since DNA methylation (5mC) is strand-specific, all samples are separated into forward (+) and reverse (−) strands:
 
 ```bash
-awk '{if($6=="+") print $1"\t"$2"\t"$3"\t"$5"\t"$6"\t"$6}' A549_1k/G4_1k.bed > A549_1k/G4_1k.pos.bed
-awk '{if($6=="-") print $1"\t"$2"\t"$3"\t"$5"\t"$6"\t"$6}' A549_1k/G4_1k.bed > A549_1k/G4_1k.neg.bed
+awk '{if($6=="+") print $1"\t"$2"\t"$3"\t"$5"\t"$6"\t"$6}' A549_1k/G4_1k.bed > A549_1k/G4_1k.suZ.bed
+awk '{if($6=="-") print $1"\t"$2"\t"$3"\t"$5"\t"$6"\t"$6}' A549_1k/G4_1k.bed > A549_1k/G4_1k.suF.bed
+
+awk '{if($6=="+") print $1"\t"$2"\t"$3"\t"$5"\t"$6"\t"$6}' A549_1k/noG4_1k.bed > A549_1k/G4_1k.suZ.bed
+awk '{if($6=="-") print $1"\t"$2"\t"$3"\t"$5"\t"$6"\t"$6}' A549_1k/noG4_1k.bed > A549_1k/G4_1k.suF.bed
 ```
 
 The same processing is applied to the negative dataset.

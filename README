@@ -11,7 +11,8 @@ This repository accompanies the study on predicting endogenous G-quadruplex (G4)
 This repository is organized around three core components:
 
 1. **Data construction**  
-   Starting from publicly available peak datasets (e.g., BG4 ChIP-seq and CUT&Tag), we construct positive and negative samples through intersection, window expansion (±512 bp; ~1024 nt), and strand-specific splitting. Epigenomic signals are aligned to fixed-length vectors using `bedtools intersect` and processed via `processed/epi_process.py`.
+   Starting from publicly available peak datasets (e.g., BG4 ChIP-seq and CUT&Tag), we construct positive and negative samples through intersection, window expansion (±512 bp; ~1024 nt), and strand-specific splitting. Epigenomic signals are aligned to fixed-length vectors using `bedtools intersect` and processed via `processed/epi_process.py`.  
+   The narrowPeak datasets used in this study are available at https://zenodo.org/records/20011733.
 
 2. **Model framework**  
    The model leverages NT-v3 via Hugging Face `transformers.AutoModel` to generate sequence embeddings. These embeddings are integrated with epigenomic tracks (e.g., DNase-seq and DNA methylation) and passed through a multimodal architecture for binary classification (G4 formation vs. non-formation).

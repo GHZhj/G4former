@@ -14,7 +14,6 @@ from utils.tokenizersM import get_ntv3_tokenizer
 import math
 import torch.nn.functional as F
 import random
-from sklearn.model_selection import StratifiedKFold
 warnings.filterwarnings('ignore')
 
 # Ensure reproducibility: make results consistent across runs
