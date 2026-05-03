@@ -35,7 +35,7 @@ conda install pytorch==2.5.1 torchvision==0.20.1 torchaudio==2.5.1 pytorch-cuda=
 conda install -c bioconda bedtools samtools ucsc-liftover -y
 conda install -c conda-forge r-tidyverse r-showtext
 
-pip install torch-geometric biopython pyBigWig -y
+pip install torch-geometric biopython pyBigWig intervene -y
 
 transformers==5.0.0
 numpy=1.26.4
