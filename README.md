@@ -15,7 +15,7 @@ This repository is organized around three core components:
    The narrowPeak datasets used in this study are available at https://zenodo.org/records/20011733.
 
 2. **Model framework**  
-   The model leverages NT-v3 via Hugging Face `transformers.AutoModel` to generate sequence embeddings. These embeddings are integrated with epigenomic tracks (e.g., DNase-seq and DNA methylation) and passed through a multimodal architecture for binary classification (G4 formation vs. non-formation).
+   The model leverages NT-v3 via Hugging Face `transformers.AutoModel` to generate sequence embeddings. These embeddings are integrated with epigenomic tracks (e.g., DNase-seq and DNA methylation) and passed through a multi-modal architecture for binary classification (G4 formation vs. non-formation).
 
 3. **Experimental setup**  
    Training scripts in `train/` implement the full model and multiple ablations. The `results/` directory contains scripts for reproducing figures and downstream analyses.
@@ -75,9 +75,7 @@ Update NT-v3 model paths in `AutoModel.from_pretrained(...)`
 
 ### Run G4former on Our Data to Reproduce Results🏃
 
-Full multimodal model training
-
-Run the main training script:
+For full multi-modal model training, you can run the main training script:
 
 ```python
 python main.py
