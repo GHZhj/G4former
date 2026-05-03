@@ -82,6 +82,10 @@ This step ensures that strand-dependent epigenetic signals are accurately repres
 
 ## 5. Genome Coordinate Harmonization
 
+**Command-line:**
+- **liftOver** (UCSC) — coordinate lift between assemblies (e.g. hg38 → hg19), as used in `processed/Readme`.
+- **bedtools** — interval intersection, sorting overlaps with signals.  
+
 Epigenomic datasets from different sources may use different genome assemblies (e.g., hg38). These are converted to hg19 using liftOver:
 
 ```bash
@@ -135,7 +139,7 @@ This step aligns sequence regions with corresponding epigenomic signals at base 
 
 The integrated BED outputs are converted into model-ready tabular format using:
 
-```bash
+```python
 python epi_process.py
 ```
 

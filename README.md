@@ -1,6 +1,6 @@
 # G4former: Predicting human G-quadruplexes across cell types by multi-modal transformer
 
-This repository accompanies the study on predicting endogenous G-quadruplex (G4) formation in the human genome by integrating DNA sequence and epigenomic signals using a pretrained nucleotide transformer. The current implementation is based on **Nucleotide Transformer v3 (NT-v3)** and incorporates **DNase-seq** and **whole-genome bisulfite sequencing (WGBS)** signals, along with multiple ablation variants and downstream analysis scripts.
+This repository accompanies the study on predicting endogenous G-quadruplex (G4) formation in the human genome by integrating DNA sequence and epigenomic signals using a pretrained nucleotide transformer. The current implementation is based on **Nucleotide Transformer v3 (Ntv3)** and incorporates **DNase-seq** and **whole-genome bisulfite sequencing (WGBS)** signals, along with multiple ablation variants and downstream analysis scripts.
 
 ## Framework
 
@@ -51,12 +51,6 @@ matplotlib=3.9.2
 seaborn=0.13.2
 ```
 
-**Command-line:**
-
-- **bedtools** — interval intersection, sorting overlaps with signals.  
-- **liftOver** (UCSC) — coordinate lift between assemblies (e.g. hg38 → hg19), as used in `processed/Readme`.
-
-
 ## Data Processing Pipeline
 
 Detailed commands are available in `processed/Readme`. The general workflow includes:
@@ -85,16 +79,16 @@ Before running the code:
 
 Run the main training script:
 
-```bash
+```python
 python main.py
 ```
-This script trains **G4former** using sequence + DNase + methylation features.
+This script trains **G4former** using sequence + DNase/ATAC + methylation features.
 
 ### Ablation models
 
 You can run individual components to evaluate their contributions:
 
-```bash
+```python
 python train/G4former-seq.py        # sequence only
 python train/G4former-DNase.py      # chromatin accessibility only
 python train/G4former-WGBS.py       # methylation only
@@ -102,7 +96,7 @@ python train/G4former-Without_CSA.py
 ```
 You also can cross-cell-type evaluation
 
-```bash
+```python
 python train/test_Other_cells.py
 ```
 
@@ -123,7 +117,7 @@ Visualization is split into **interpretability / attention** scripts under `visu
 
 The script **`visualization/differential_attention_maps.py`** loads trained **G4former** weights, runs forward passes with and without part of the epigenomic input, and saves **differential attention** heatmaps (PDF) via `matplotlib` / `seaborn` inside `G4former.plot_attention(...)`.
 
-```bash
+```python
 python visualization/differential_attention_maps.py
 ```
 

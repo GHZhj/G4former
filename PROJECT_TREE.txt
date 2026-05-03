@@ -20,7 +20,7 @@ G4former/
 │   ├── epi_process.py
 │   ├── ourdataset.bed
 │   ├── pqsfinder.R
-│   └── Readme
+│   └── readme.md
 ├── results/
 │   ├── Fig1/
 │   │   ├── 01000_eG4_A549.bed
@@ -79,4 +79,4 @@ G4former/
 │   └── ISM.ipynb
 ├── .DS_Store
 ├── main.py
-└── README
+└── README.md
