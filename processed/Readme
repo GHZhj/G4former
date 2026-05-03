@@ -1,0 +1,141 @@
+
+# Dataset Construction Pipeline for G4former🐴
+
+This document describes the data construction workflow used to generate high-confidence training datasets for modeling cell-type-specific G-quadruplex (G4) formation. The design follows a rigorous and biologically motivated strategy to ensure both accuracy and reproducibility.
+
+---
+
+## 1. Overview
+
+To accurately model endogenous G4 (eG4) formation, we construct positive and negative samples by integrating experimentally validated G4 datasets with cell-type-specific peak data. This strategy addresses limitations in previous datasets, which often suffer from incomplete coverage or biased labeling.
+
+---
+
+## 2. Generation of Positive and Negative Sets
+
+We first intersect the curated G4 dataset (`ourdataset.bed`) with cell-type-specific peak data (e.g., A549) to define positive and negative samples:
+
+```bash
+intervene venn -i ourdataset.bed A549.peak --save-overlaps
+```
+
+- **Positive set (A549_input)**: regions overlapping both G4 and A549 peaks  
+- **Negative set (noA549_input)**: regions not overlapping A549 peaks  
+
+This step ensures that positive samples reflect experimentally supported G4 formation in a specific cellular context.
+
+---
+
+## 3. Fixed-Length Window Construction
+
+To standardize input representation, each region is expanded to a fixed-length window (1024 bp, ±512 bp around the center):
+
+```bash
+awk 'BEGIN{OFS="\t"}{
+    tss=$2
+    start=tss-512
+    end=tss+512
+    if(start<0) start=0
+    print $1, start, end, $4
+}' A549_input.bed > A549_1k/G4_1k.bed
+```
+
+The same procedure is applied to the negative set:
+
+```bash
+awk 'BEGIN{OFS="\t"}{
+    tss=$2
+    start=tss-512
+    end=tss+512
+    if(start<0) start=0
+    print $1, start, end, $4
+}' noA549_input.bed > A549_1k/noG4_1k.bed
+```
+
+All regions are then sorted and deduplicated:
+
+```bash
+sort -k1,1 -k2,2n --parallel=$(nproc) *.bed | uniq > *.su.bed
+```
+
+This fixed-window design ensures consistent sequence and epigenomic feature alignment for downstream modeling.
+
+---
+
+## 4. Strand-Specific Processing
+
+Since DNA methylation (5mC) is strand-specific, all samples are separated into forward (+) and reverse (−) strands:
+
+```bash
+awk '{if($6=="+") print $1"\t"$2"\t"$3"\t"$5"\t"$6"\t"$6}' A549_1k/G4_1k.bed > A549_1k/G4_1k.pos.bed
+awk '{if($6=="-") print $1"\t"$2"\t"$3"\t"$5"\t"$6"\t"$6}' A549_1k/G4_1k.bed > A549_1k/G4_1k.neg.bed
+```
+
+The same processing is applied to the negative dataset.
+
+This step ensures that strand-dependent epigenetic signals are accurately represented.
+
+---
+
+## 5. Genome Coordinate Harmonization
+
+Epigenomic datasets from different sources may use different genome assemblies (e.g., hg38). These are converted to hg19 using liftOver:
+
+```bash
+liftOver ENCFF399KCR.bedGraph hg38ToHg19.over.chain ENCFF399KCR.hg19 ENCFF399KCR.unmapped.bed
+sort -k1,1 -k2,2n --parallel=$(nproc) ENCFF399KCR.hg19 > ENCFF399KCR.hg19.sorted
+```
+
+This guarantees consistency across all data modalities.
+
+---
+
+## 6. Integration of Epigenomic Features
+
+We integrate G4 regions with epigenomic signals (chromatin accessibility and DNA methylation) using `bedtools intersect`:
+
+```bash
+bedtools intersect -wa -wb -sorted -loj \
+    -a G4_regions.bed \
+    -b epigenomic_signal.bedGraph \
+    > integrated_features.bed
+```
+
+This step aligns sequence regions with corresponding epigenomic signals at base resolution.
+
+---
+
+## 7. Epigenomic Data Sources
+
+### A549
+- ATAC-seq: ENCFF399KCR  
+- WGBS: ENCFF723WVM, ENCFF261NNW  
+- DNase-seq: ENCFF723TWJ  
+
+### K562
+- ATAC-seq: ENCFF357GNC  
+- WGBS: ENCFF459XNY, ENCFF430PNX  
+- DNase-seq: ENCFF352SET  
+
+### HepG2
+- ATAC-seq: ENCFF262URW  
+- WGBS: ENCFF374DQU, ENCFF601FCO  
+- DNase-seq: ENCFF867UYB  
+
+### 293T
+- WGBS: SRR29433653 (strand-specific)  
+- DNase-seq: ENCFF716SFD  
+
+---
+
+## 8. Final Data Formatting
+
+The integrated BED outputs are converted into model-ready tabular format using:
+
+```bash
+python epi_process.py
+```
+
+This script transforms raw intersection outputs into structured TSV matrices compatible with downstream model input.
+
+---

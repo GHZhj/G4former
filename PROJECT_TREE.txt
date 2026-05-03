@@ -1,0 +1,82 @@
+G4former/
+├── image/
+│   ├── .gitkeep
+│   └── G4former.png
+├── source_data/
+│   └── Originpeak.ipynb
+├── ntv3_base_model/
+│   ├── __init__.py
+│   ├── configuration_ntv3_posttrained.py
+│   ├── configuration_ntv3_pretrained.py
+│   ├── gitattributes
+│   ├── modeling_ntv3_posttrained.py
+│   ├── modeling_ntv3_pretrained.py
+│   ├── README.md
+│   ├── special_tokens_map.json
+│   ├── tokenization_ntv3.py
+│   ├── tokenizer_config.json
+│   └── vocab.json
+├── processed/
+│   ├── epi_process.py
+│   ├── ourdataset.bed
+│   ├── pqsfinder.R
+│   └── Readme
+├── results/
+│   ├── Fig1/
+│   │   ├── 01000_eG4_A549.bed
+│   │   ├── 1.score.py
+│   │   ├── _EndoQuard.bed
+│   │   ├── _Ourdataset_score.bed
+│   │   ├── _pictureG-H.ipynb
+│   │   ├── ChIp-seq.bed
+│   │   ├── eG4_293T.bed
+│   │   ├── eG4_A549.bed
+│   │   ├── eG4_HACAT.bed
+│   │   ├── eG4_HepG2.bed
+│   │   ├── eG4_K562.bed
+│   │   ├── fold_chr12_C12orf75_model_0.cif
+│   │   ├── fold_chr7_VPS41_model_0.cif
+│   │   ├── G4-seq.bed
+│   │   └── PQS_unpadded.bed
+│   ├── Fig2/
+│   │   ├── combined_plots_final.pdf
+│   │   └── Scatter.ipynb
+│   ├── Fig4/
+│   │   ├── bar.py
+│   │   └── radar.py
+│   ├── Fig5/
+│   │   └── Ablation.py
+│   ├── Fig8/
+│   │   ├── A549_ATAC-DNase.R.R
+│   │   ├── HepG2_ATAC-DNase.R
+│   │   ├── K562_ATAC-DNase.R.R
+│   │   └── Resolution.R
+│   ├── Fig9/
+│   │   ├── add_up_down.py
+│   │   ├── DESeq2.R
+│   │   ├── meth.R
+│   │   └── UP_vs_Down_boxplot.pdf.R
+│   ├── .DS_Store
+│   ├── test2.csv
+│   ├── test3.csv
+│   ├── test4.csv
+│   ├── test5.csv
+│   ├── test6.csv
+│   ├── test7.csv
+│   └── test8.csv
+├── train/
+│   ├── .DS_Store
+│   ├── G4former-DNase.py
+│   ├── G4former-seq.py
+│   ├── G4former-WGBS.py
+│   ├── G4former-Without_CSA.py
+│   └── test_Other_cells.py
+├── utils/
+│   └── tokenizersM.py
+├── visualization/
+│   ├── differential attention maps.ipynb
+│   ├── differential_attention_maps.py
+│   └── ISM.ipynb
+├── .DS_Store
+├── main.py
+└── README
