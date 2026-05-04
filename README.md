@@ -25,7 +25,7 @@ This repository is organized around three core components:
 
 You can install via **conda + pip** as in the next section.
 
-**Python dependencies (reference pins):**
+**Python dependencies:**
 
 ```
 conda create -n g4former python=3.12.2 -y
@@ -65,11 +65,11 @@ After preprocessing, you will obtain tabular inputs required for model training.
 
 Before running the code:
 
-Update NT-v3 model paths in `AutoModel.from_pretrained(...)`  
+Update NT-v3 model paths in `AutoModel.from_pretrained(...)`, such as "nucleotide_transformer_v3/NTv3_100M_post".
 - Nucleotide Transformer v3 (**NTv3 100M post**) for sequence features:  
-   https://huggingface.co/InstaDeepAI/NTv3_100M_post/tree/main  
+   https://huggingface.co/InstaDeepAI/NTv3_100M_post/tree/main
 - Base / tokenizer assets if needed:  
-   https://huggingface.co/InstaDeepAI/ntv3_base_model/tree/main  
+   https://huggingface.co/InstaDeepAI/ntv3_base_model/tree/main
 
 ### Run G4former on Our Data to Reproduce Results🏃
 
