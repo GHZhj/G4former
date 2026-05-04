@@ -1,6 +1,5 @@
-# BiocManager::install("IlluminaHumanMethylation450kanno.ilmn12.hg19")
-# library(IlluminaHumanMethylation450kanno.ilmn12.hg19)
 library(IlluminaHumanMethylation450kanno.ilmn12.hg19)
+
 # 读你的数据
 df <- read.table("/home/hjzhang/cancer/1bc818c4-d49b-4c73-b624-4ce818eee3e9.methylation_array.sesame.level3betas.txt", header=FALSE, sep="\t")
 colnames(df) <- c("cg", "value")

@@ -23,7 +23,7 @@ This repository is organized around three core components:
 
 ## System Requirements
 
-You can install via **conda + pip** as in the next section).
+You can install via **conda + pip** as in the next section.
 
 **Python dependencies (reference pins):**
 
@@ -31,28 +31,27 @@ You can install via **conda + pip** as in the next section).
 conda create -n g4former python=3.12.2 -y
 conda activate g4former
 conda install pytorch==2.5.1 torchvision==0.20.1 torchaudio==2.5.1 pytorch-cuda=12.4 -c pytorch -c nvidia
-conda install -c bioconda bedtools samtools ucsc-liftover -y
-conda install -c conda-forge r-tidyverse r-showtext
+conda install -c bioconda bedtools samtools ucsc-liftover bioconductor-pqsfinder bioconductor-biostrings bioconductor-biocParallel bioconductor-rtracklayer bioconductor-DESeq2 bioconductor-IlluminaHumanMethylation450kanno.ilmn12.hg19 -y
+conda install -c conda-forge r-tidyverse r-patchwork r-showtext r-seqinr -y
 
-pip install torch-geometric biopython pyBigWig intervene -y
-
-transformers==5.0.0
-numpy=1.26.4
-pandas=2.2.2
-scipy=1.13.1
-scikit-learn=1.5.1
-tqdm=4.66.5
-huggingface-hub==1.3.4
-safetensors==0.4.5
-tokenizers==0.22.2
-sentencepiece==0.2.0
-matplotlib=3.9.2
-seaborn=0.13.2
+pip install torch-geometric biopython pyBigWig intervene plotnine \
+transformers==5.0.0 \
+numpy==1.26.4 \
+pandas==2.2.2 \
+scipy==1.13.1 \
+scikit-learn==1.5.1 \
+tqdm==4.66.5 \
+huggingface-hub==1.3.4 \
+safetensors==0.4.5 \
+tokenizers==0.22.2 \
+sentencepiece==0.2.0 \
+matplotlib==3.9.2 \
+seaborn==0.13.2
 ```
 
 ## Data Processing Pipeline
 
-Detailed commands are available in `processed/Readme`. The general workflow includes:
+Detailed commands are available in `processed/readme.md`. The general workflow includes:
 
 1. Defines positive/negative samples by intersecting G4 datasets with cell-type-specific peaks  
 2. Expands regions to fixed-length windows (1024 bp)  
@@ -98,7 +97,6 @@ python train/test_Other_cells.py    # new cell types
 python train/test_cancer.py         # 20 cancer types form the TCGA cohort
 
 ```
-
 
 ## Reproducing figures
 

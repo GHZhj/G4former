@@ -1,5 +1,3 @@
-#!/usr/bin/env Rscript
-
 library(DESeq2)
 library(tidyverse)
 
