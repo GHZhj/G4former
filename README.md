@@ -23,8 +23,7 @@ This repository is organized around three core components:
 
 ## System Requirements
 
-The training and visualization code targets a standard **Windows / macOS / Linux** workstation. **GPU is strongly recommended** for NT-v3 fine-tuning and attention visualization at scale; CPU-only runs are possible but slow. 
-The active development stack was aligned with the full **`environment.yml`** snapshot (Python **3.12**, PyTorch **2.5.x**, **transformers 5.x**). A minimal subset sufficient for `train/` entry points is listed below (you can install via **conda + pip** as in the next section, without relying on the YAML file for the PyTorch line items).
+You can install via **conda + pip** as in the next section).
 
 **Python dependencies (reference pins):**
 
